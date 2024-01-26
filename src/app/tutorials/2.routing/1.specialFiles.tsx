@@ -56,3 +56,24 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 export function Template({ children }: { children: React.ReactNode }) {
 	return <div>{children}</div>;
 }
+
+/* Loading.js
+    showing the loading ui befor everything ready in the page
+*/
+export function Loading() {
+	// You can add any UI inside Loading, including a Skeleton.
+	return <div>Skeleten ui</div>;
+}
+//using Suspense
+//this way every part if ready is rendered
+//rap the unimportant time consuming (fetching) component of the page with suspense
+import { Suspense } from "react";
+//import { PostFeed, Weather } from './Components'
+export function Posts() {
+	return (
+		<section>
+			<Suspense fallback={<p>Loading feed...</p>}>{/*  <PostFeed /> */}</Suspense>
+			<Suspense fallback={<p>Loading weather...</p>}>{/* <Weather /> */}</Suspense>
+		</section>
+	);
+}
