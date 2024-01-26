@@ -4,12 +4,12 @@
 /* 
 layout=                Shared UI for a segment and its children
 page=	               Unique UI of a route and make routes publicly accessible
+template=	           Specialized re-rendered Layout UI
 loading=	           Loading UI for a segment and its children
 not-found=	           Not found UI for a segment and its children
 error=	               Error UI for a segment and its children
 global-error=	       Global Error UI
 route=	               Server-side API endpoint
-template=	           Specialized re-rendered Layout UI
 default=               Fallback UI for Parallel Routes
 */
 
@@ -30,8 +30,11 @@ export function Page() {
     The component should accept a children prop that will be
     populated with a child layout (if it exists) or a child page during rendering.
     Layouts are Server Components by default but can be set to a Client Component.
+    Layouts can fetch data.
+    Passing data between a parent layout and its children is not possible.
+    Layouts do not have access to the route segments below itself.
+    Layouts are nested in nextjs folder hierarchy
 */
-
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<section>
@@ -39,4 +42,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 			{children}
 		</section>
 	);
+}
+
+/* Templates 
+
+    Templates are similar to layouts in that they wrap each child layout or page.
+    Unlike layouts that persist across routes and maintain state, templates create
+    a new instance for each of their children on navigation. 
+    In terms of nesting, template.js is rendered between a layout and its children.
+    the layout persist the states and effects but the layouts re runs with changing the routes
+
+*/
+export function Template({ children }: { children: React.ReactNode }) {
+	return <div>{children}</div>;
 }
