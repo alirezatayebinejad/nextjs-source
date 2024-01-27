@@ -1,6 +1,4 @@
-//routing in next js is based on folders and files
-//for domain.com/setting/profile we need two folders like profile folder inside the setting folder
-//in folders we have files that does their uniqe jobs. some file conventions:
+//in folders we have files that does their uniqe jobs. some special files:
 /* 
 layout=                Shared UI for a segment and its children
 page=	               Unique UI of a route and make routes publicly accessible
